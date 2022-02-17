@@ -161,11 +161,11 @@ public abstract class BeanDefinitionReaderUtils {
 
 		// Register bean definition under primary name.
 		String beanName = definitionHolder.getBeanName();
-		registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());
+		registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());// LJ MARK: 注册这个beanDefiniton
 
 		// Register aliases for bean name, if any.
 		String[] aliases = definitionHolder.getAliases();
-		if (aliases != null) {
+		if (aliases != null) {// LJ MARK: 如果有别名 需要把别名全部注册一遍
 			for (String alias : aliases) {
 				registry.registerAlias(beanName, alias);
 			}

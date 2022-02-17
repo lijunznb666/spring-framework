@@ -88,13 +88,13 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	/**
 	 * Set the name of the parent definition of this bean definition, if any.
 	 */
-	void setParentName(@Nullable String parentName);
+	void setParentName(@Nullable String parentName);// LJ MARK: 设置父bean
 
 	/**
 	 * Return the name of the parent definition of this bean definition, if any.
 	 */
 	@Nullable
-	String getParentName();
+	String getParentName();// LJ MARK: 获取父bean
 
 	/**
 	 * Specify the bean class name of this bean definition.
@@ -104,7 +104,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * @see #setFactoryBeanName
 	 * @see #setFactoryMethodName
 	 */
-	void setBeanClassName(@Nullable String beanClassName);
+	void setBeanClassName(@Nullable String beanClassName);// LJ MARK: bean类名称
 
 	/**
 	 * Return the current bean class name of this bean definition.
@@ -119,14 +119,14 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * @see #getFactoryMethodName()
 	 */
 	@Nullable
-	String getBeanClassName();
+	String getBeanClassName();// LJ MARK: 获取bean类名称
 
 	/**
 	 * Override the target scope of this bean, specifying a new scope name.
 	 * @see #SCOPE_SINGLETON
 	 * @see #SCOPE_PROTOTYPE
 	 */
-	void setScope(@Nullable String scope);
+	void setScope(@Nullable String scope);// LJ MARK: 设置bean的scope
 
 	/**
 	 * Return the name of the current target scope for this bean,
@@ -140,7 +140,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * <p>If {@code false}, the bean will get instantiated on startup by bean
 	 * factories that perform eager initialization of singletons.
 	 */
-	void setLazyInit(boolean lazyInit);
+	void setLazyInit(boolean lazyInit);// LJ MARK: 设置是否懒加载
 
 	/**
 	 * Return whether this bean should be lazily initialized, i.e. not
@@ -152,7 +152,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Set the names of the beans that this bean depends on being initialized.
 	 * The bean factory will guarantee that these beans get initialized first.
 	 */
-	void setDependsOn(@Nullable String... dependsOn);
+	void setDependsOn(@Nullable String... dependsOn);// LJ MARK: 设置该bean的所有依赖
 
 	/**
 	 * Return the bean names that this bean depends on.
@@ -167,7 +167,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * if the specified bean is not marked as an autowire candidate. As a consequence,
 	 * autowiring by name will nevertheless inject a bean if the name matches.
 	 */
-	void setAutowireCandidate(boolean autowireCandidate);
+	void setAutowireCandidate(boolean autowireCandidate);// LJ MARK: 设置该bean是否可以注入到其他bean中
 
 	/**
 	 * Return whether this bean is a candidate for getting autowired into some other bean.
@@ -179,7 +179,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * <p>If this value is {@code true} for exactly one bean among multiple
 	 * matching candidates, it will serve as a tie-breaker.
 	 */
-	void setPrimary(boolean primary);
+	void setPrimary(boolean primary);// LJ MARK: 设置bean primary属性 同一接口 多个实现，如果不指定名字的话，spring将优先选择primary为true的bean注入
 
 	/**
 	 * Return whether this bean is a primary autowire candidate.
@@ -191,7 +191,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * This the name of the bean to call the specified factory method on.
 	 * @see #setFactoryMethodName
 	 */
-	void setFactoryBeanName(@Nullable String factoryBeanName);
+	void setFactoryBeanName(@Nullable String factoryBeanName);// LJ MARK: 设置工厂名称
 
 	/**
 	 * Return the factory bean name, if any.
@@ -207,7 +207,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * @see #setFactoryBeanName
 	 * @see #setBeanClassName
 	 */
-	void setFactoryMethodName(@Nullable String factoryMethodName);
+	void setFactoryMethodName(@Nullable String factoryMethodName);// LJ MARK: 指定工厂类中的工厂方法名称
 
 	/**
 	 * Return a factory method, if any.
@@ -220,7 +220,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * <p>The returned instance can be modified during bean factory post-processing.
 	 * @return the ConstructorArgumentValues object (never {@code null})
 	 */
-	ConstructorArgumentValues getConstructorArgumentValues();
+	ConstructorArgumentValues getConstructorArgumentValues();// LJ MARK: 获取构造器参数
 
 	/**
 	 * Return if there are constructor argument values defined for this bean.
@@ -235,7 +235,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * <p>The returned instance can be modified during bean factory post-processing.
 	 * @return the MutablePropertyValues object (never {@code null})
 	 */
-	MutablePropertyValues getPropertyValues();
+	MutablePropertyValues getPropertyValues();// LJ MARK: bean中的属性值，给bean注入属性值时会用到
 
 	/**
 	 * Return if there are property values defined for this bean.
@@ -249,7 +249,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Set the name of the initializer method.
 	 * @since 5.1
 	 */
-	void setInitMethodName(@Nullable String initMethodName);
+	void setInitMethodName(@Nullable String initMethodName);// LJ MARK: 设置初始化方法名称
 
 	/**
 	 * Return the name of the initializer method.
@@ -262,7 +262,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Set the name of the destroy method.
 	 * @since 5.1
 	 */
-	void setDestroyMethodName(@Nullable String destroyMethodName);
+	void setDestroyMethodName(@Nullable String destroyMethodName);// LJ MARK: 设置销毁方法名称
 
 	/**
 	 * Return the name of the destroy method.
@@ -323,7 +323,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * returned on all calls.
 	 * @see #SCOPE_SINGLETON
 	 */
-	boolean isSingleton();
+	boolean isSingleton();// LJ MARK: 是否是单例bean
 
 	/**
 	 * Return whether this a <b>Prototype</b>, with an independent instance
@@ -331,12 +331,12 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * @since 3.0
 	 * @see #SCOPE_PROTOTYPE
 	 */
-	boolean isPrototype();
+	boolean isPrototype();// LJ MARK: 是否 prototype
 
 	/**
 	 * Return whether this bean is "abstract", that is, not meant to be instantiated.
 	 */
-	boolean isAbstract();
+	boolean isAbstract();// LJ MARK: 如果这个 Bean 是被设置为 abstract，那么不能实例化，常用于作为 父bean 用于继承
 
 	/**
 	 * Return a description of the resource that this bean definition

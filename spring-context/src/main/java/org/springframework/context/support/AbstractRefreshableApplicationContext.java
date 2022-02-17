@@ -16,14 +16,14 @@
 
 package org.springframework.context.support;
 
-import java.io.IOException;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.lang.Nullable;
+
+import java.io.IOException;
 
 /**
  * Base class for {@link org.springframework.context.ApplicationContext}
@@ -119,15 +119,17 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 */
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
+		// LJ MARK: 判断当前ApplicationContext是否存在beanFactory 如果存在则销毁所有的bean和关闭beanFactory
+		// LJ MARK: 一个应用可以存在多个beanFactory 这里判断的是当前ApplicationContext是否存在beanFactory
 		if (hasBeanFactory()) {
 			destroyBeans();
 			closeBeanFactory();
 		}
 		try {
-			DefaultListableBeanFactory beanFactory = createBeanFactory();
+			DefaultListableBeanFactory beanFactory = createBeanFactory();// LJ MARK: 初始化DefaultListableBeanFactory
 			beanFactory.setSerializationId(getId());
-			customizeBeanFactory(beanFactory);
-			loadBeanDefinitions(beanFactory);
+			customizeBeanFactory(beanFactory);// LJ MARK: 设置 BeanFactory 的两个配置属性：是否允许 Bean 覆盖、是否允许循环引用
+			loadBeanDefinitions(beanFactory);// LJ MARK: 加载bean到beanFactory中
 			this.beanFactory = beanFactory;
 		}
 		catch (IOException ex) {

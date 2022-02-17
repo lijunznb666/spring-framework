@@ -52,7 +52,7 @@ import org.springframework.util.Assert;
 public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext {
 
 	@Nullable
-	private Resource[] configResources;
+	private Resource[] configResources; // LJ MARK: 配置文件数组
 
 
 	/**
@@ -139,6 +139,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 			throws BeansException {
 
 		super(parent);
+		// LJ MARK: 根据提供的路径, 处理成文件数组 (以分号、逗号、空格、tab、换行符分割)
 		setConfigLocations(configLocations);
 		if (refresh) {
 			refresh();
